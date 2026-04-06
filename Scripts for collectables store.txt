@@ -1,0 +1,254 @@
+CREATE TABLE Position (
+    PositionID INTEGER PRIMARY KEY AUTOINCREMENT,
+    PositionTitle TEXT NOT NULL
+);
+
+CREATE TABLE Person (
+    PersonID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Title TEXT,
+    NameFirst TEXT NOT NULL,
+    NameMiddle TEXT,
+    NameLast TEXT NOT NULL,
+    Suffix TEXT,
+    Address1 TEXT NOT NULL,
+    Address2 TEXT,
+    Address3 TEXT,
+    City TEXT NOT NULL,
+    Zipcode TEXT NOT NULL,
+    State TEXT NOT NULL,
+    Email TEXT,
+    PhonePrimary TEXT,
+    PhoneSecondary TEXT,
+    Image BLOB,
+    PositionID INTEGER NOT NULL,
+    PersonDeleted INTEGER,
+    FOREIGN KEY (PositionID) REFERENCES Position(PositionID)
+);
+**************************************************************************************************************************************
+CREATE TABLE SecurityQuestions (
+    QuestionID INTEGER PRIMARY KEY AUTOINCREMENT,
+    SetID INTEGER NOT NULL,
+    QuestionPrompt TEXT NOT NULL
+);
+
+CREATE TABLE Logon (
+    LogonID INTEGER PRIMARY KEY AUTOINCREMENT,
+    PersonID INTEGER NOT NULL,
+    LogonName TEXT NOT NULL UNIQUE,
+    Password TEXT NOT NULL,
+    FirstChallengeQuestion INTEGER NOT NULL,
+    FirstChallengeAnswer TEXT NOT NULL,
+    SecondChallengeQuestion INTEGER NOT NULL,
+    SecondChallengeAnswer TEXT NOT NULL,
+    ThirdChallengeQuestion INTEGER NOT NULL,
+    ThirdChallengeAnswer TEXT NOT NULL,
+    PositionTitle TEXT NOT NULL,
+    AccountDisabled INTEGER,
+    AccountDeleted INTEGER,
+    FOREIGN KEY (PersonID) REFERENCES Person(PersonID),
+    FOREIGN KEY (FirstChallengeQuestion) REFERENCES SecurityQuestions(QuestionID),
+    FOREIGN KEY (SecondChallengeQuestion) REFERENCES SecurityQuestions(QuestionID),
+    FOREIGN KEY (ThirdChallengeQuestion) REFERENCES SecurityQuestions(QuestionID)
+);
+
+CREATE TABLE Categories (
+    CategoryID INTEGER PRIMARY KEY AUTOINCREMENT,
+    CategoryName TEXT NOT NULL,
+    CategoryDescription TEXT
+);
+
+CREATE TABLE Inventory (
+    InventoryID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ItemName TEXT NOT NULL,
+    ItemDescription TEXT NOT NULL,
+    CategoryID INTEGER NOT NULL,
+    RetailPrice REAL NOT NULL,
+    Cost REAL NOT NULL,
+    Quantity INTEGER NOT NULL CHECK (Quantity >= 0),
+    RestockThreshold INTEGER NOT NULL CHECK (RestockThreshold >= 0),
+    ItemImage BLOB,
+    Discontinued INTEGER,
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+);
+
+CREATE TABLE Discounts (
+    DiscountID INTEGER PRIMARY KEY AUTOINCREMENT,
+    DiscountCode TEXT NOT NULL,
+    Description TEXT NOT NULL,
+    DiscountLevel INTEGER NOT NULL,
+    InventoryID INTEGER,
+    DiscountType INTEGER NOT NULL,
+    DiscountPercentage REAL,
+    DiscountDollarAmount REAL,
+    StartDate TEXT,
+    ExpirationDate TEXT NOT NULL,
+    FOREIGN KEY (InventoryID) REFERENCES Inventory(InventoryID)
+);
+
+ALTER TABLE Discounts
+ADD COLUMN DiscountDeleted INTEGER;
+
+CREATE TABLE Orders (
+    OrderID INTEGER PRIMARY KEY AUTOINCREMENT,
+    DiscountID INTEGER,
+    PersonID INTEGER NOT NULL,
+    EmployeeID INTEGER,
+    OrderDate TEXT NOT NULL,
+    CC_Number TEXT,
+    ExpDate TEXT,
+    CCV TEXT,
+    FOREIGN KEY (PersonID) REFERENCES Person(PersonID),
+    FOREIGN KEY (EmployeeID) REFERENCES Person(PersonID),
+    FOREIGN KEY (DiscountID) REFERENCES Discounts(DiscountID)
+);
+
+CREATE TABLE OrderDetails (
+    OrderDetailsID INTEGER PRIMARY KEY AUTOINCREMENT,
+    OrderID INTEGER NOT NULL,
+    InventoryID INTEGER NOT NULL,
+    DiscountID INTEGER,
+    Quantity INTEGER NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (InventoryID) REFERENCES Inventory(InventoryID),
+    FOREIGN KEY (DiscountID) REFERENCES Discounts(DiscountID)
+);
+
+-------------------------------------------------------------------------------------------------------------------------------------
+						         Data inside tables
+INSERT INTO SecurityQuestions (SetID, QuestionPrompt) VALUES
+(1, 'What is your favorite Color?'),
+(1, 'Your favorite Toy''s name?'),
+(1, 'Your Pet''s name?'),
+(2, 'Your Home Town name?'),
+(2, 'Your mother''s first name?'),
+(2, 'Your favorite Football Team?'),
+(3, 'What is your favorite food?'),
+(3, 'Favorite place to vacation?'),
+(3, 'Name of your favorite book?');
+
+INSERT INTO Categories (CategoryName, CategoryDescription)
+VALUES
+('Marvel Figures', 'Hot Toys Marvel 1/6 scale characters.'),
+('Star Wars Figures', 'Collectibles from the Star Wars universe.'),
+('DC Figures', 'Superheroes and villains from DC Comics.'),
+('Horror & Fantasy', 'Fantasy legends and horror movie figures.'),
+('Deluxe / Vehicles', 'Larger deluxe pieces like Hulkbuster or diorama sets.');
+
+INSERT INTO Inventory (
+  ItemName, ItemDescription, CategoryID, RetailPrice, Cost,
+  Quantity, RestockThreshold, ItemImage, Discontinued
+)
+VALUES
+-- Marvel (1)
+('Hot Toys Spider-Man (Far From Home)', 'Spider-Man figure in suit, accessories included.', 1, 289.99, 180.00, 15, 5, NULL, 0),
+('Hot Toys Iron Man Mark 85 (Endgame)', 'Battle-damaged armor with LEDs.', 1, 399.99, 250.00, 10, 3, NULL, 0),
+('Hot Toys Captain America (Endgame)', 'Cap with shield & Mjolnir.', 1, 299.99, 195.00, 12, 4, NULL, 0),
+('Hot Toys Thor (Infinity War)', 'Includes Stormbreaker and lightning effects.', 1, 310.00, 210.00, 8, 2, NULL, 0),
+('Hot Toys Black Panther', 'Detailed suit, mask, Wakandan base.', 1, 280.00, 175.00, 14, 5, NULL, 0),
+
+-- Star Wars (2)
+('Hot Toys Darth Vader (Obi-Wan Series)', 'Cracked helmet and LED base.', 2, 325.00, 220.00, 10, 2, NULL, 0),
+('Hot Toys Luke Skywalker (The Mandalorian)', 'Lightsaber, cloak; realistic portrait.', 2, 299.99, 200.00, 9, 3, NULL, 0),
+('Hot Toys Boba Fett (Deluxe)', 'Includes throne and alternate outfit.', 2, 339.99, 230.00, 6, 2, NULL, 0),
+('Hot Toys Mandalorian & Grogu', 'Beskar armor Mando with Grogu.', 2, 375.00, 240.00, 11, 3, NULL, 0),
+('Hot Toys Star-Lord (Vol. 2)', 'Chris Pratt likeness with accessories.', 2, 279.99, 180.00, 9, 3, NULL, 0),
+
+-- DC (3)
+('Hot Toys Batman (Justice League)', 'Batman Tactical suit + gadgets.', 3, 289.00, 190.00, 13, 3, NULL, 0),
+('Hot Toys Wonder Woman (WW84)', 'Golden armor, Lassos, wings.', 3, 310.00, 215.00, 8, 2, NULL, 0),
+('INART Joker (1/6 Scale)', 'Rooted-hair Joker with extra heads.', 3, 399.00, 300.00, 5, 1, NULL, 0),
+('INART Batman (The Batman 2022)', 'Fabric suit with accessories.', 3, 395.00, 290.00, 5, 2, NULL, 0),
+
+-- Horror & Fantasy (4)
+('Hot Toys Wolverine (Days of Future Past)', 'Leather outfit Wolverine figure.', 4, 279.99, 180.00, 12, 4, NULL, 0),
+('INART Gandalf the Grey', 'Fabric robe and real-hair beard Gandalf.', 4, 385.00, 280.00, 6, 2, NULL, 0),
+('INART Pennywise (IT 2017)', 'Scary Pennywise with rooted hair.', 4, 420.00, 310.00, 4, 2, NULL, 0),
+('Hot Toys Joker (Heath Ledger)', 'Deluxe Joker with chair accessory.', 4, 349.99, 250.00, 10, 3, NULL, 0),
+
+-- Deluxe (5)
+('Hot Toys Hulkbuster (Age of Ultron)', 'Massive Hulkbuster with LEDs.', 5, 800.00, 600.00, 2, 1, NULL, 0),
+('Hot Toys War Machine (Iron Patriot)', 'Gun pods and missiles.', 5, 349.00, 250.00, 6, 2, NULL, 0),
+('Hot Toys Rocket & Groot', 'Rocket figure with mini Groot.', 5, 259.99, 170.00, 10, 3, NULL, 0),
+('Hot Toys Gamora', 'Highly detailed Gamora figure.', 5, 289.99, 185.00, 7, 2, NULL, 0),
+('Hot Toys Doctor Strange (Multiverse)', 'Doctor Strange with magic effects.', 5, 319.99, 200.00, 9, 3, NULL, 0);
+
+// Add 2 more to Inventory
+INSERT INTO Inventory (
+  ItemName, ItemDescription, CategoryID, RetailPrice, Cost,
+  Quantity, RestockThreshold, ItemImage, Discontinued
+)
+VALUES (
+  'Hot Toys Superman (Man of Steel)',
+  'Cavill Superman with cape and base stand.',
+  3,
+  299.99,
+  200.00,
+  6,
+  2,
+  NULL,
+  0
+);
+
+INSERT INTO Inventory (
+  ItemName, ItemDescription, CategoryID, RetailPrice, Cost,
+  Quantity, RestockThreshold, ItemImage, Discontinued
+)
+VALUES (
+  'Hot Toys Hellboy (2019)',
+  'Hellboy figure with crown, sword, and alternate hands.',
+  4,
+  289.99,
+  195.00,
+  5,
+  2,
+  NULL,
+  0
+);
+
+INSERT INTO Discounts (
+    DiscountCode, Description, DiscountLevel, InventoryID,
+    DiscountType, DiscountPercentage, DiscountDollarAmount,
+    StartDate, ExpirationDate
+)
+VALUES
+('BOGO50', 'Buy One Get One 50% Off (Cart Level)', 0, NULL, 0, 0.50, NULL, date('now'), '2026-01-01'),
+('SAVE10', '$10 Off Total Purchase (Cart Level)', 0, NULL, 1, NULL, 10.00, date('now'), '2025-12-31'),
+('FALL15', '15% Off Fall Season Items (Cart Level)', 0, NULL, 0, 0.15, NULL, date('now'), '2025-11-30'),
+('WELCOME5', 'Welcome Discount - $5 Off First Order', 0, NULL, 1, NULL, 5.00, date('now'), '2026-01-15');
+
+INSERT INTO Discounts (
+    DiscountCode, Description, DiscountLevel, InventoryID,
+    DiscountType, DiscountPercentage, DiscountDollarAmount,
+    StartDate, ExpirationDate
+)
+VALUES (
+    'IRON20',
+    '20% Off Iron Man Mark 85',
+    1,
+    2,            -- <-- InventoryID for Iron Man
+    0,
+    0.20,
+    NULL,
+    date('now'),
+    '2025-12-31'
+);
+
+INSERT INTO Discounts (
+    DiscountCode, Description, DiscountLevel, InventoryID,
+    DiscountType, DiscountPercentage, DiscountDollarAmount,
+    StartDate, ExpirationDate
+)
+VALUES (
+    'HULK15',
+    '$15 Off Hulkbuster',
+    1,
+    19,           -- <-- InventoryID for Hulkbuster
+    1,
+    NULL,
+    15.00,
+    date('now'),
+    '2026-01-01'
+);
+
+
+
