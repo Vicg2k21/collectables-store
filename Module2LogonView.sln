@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module2LogonView", "Module2LogonView.csproj", "{60681FF4-86F3-414E-B884-2321C5EAE2DC}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Module2Logon", "..\Module2Logon\Module2Logon.vdproj", "{7BBCA60F-6B67-4926-AA9C-7A652DC8027F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Module3CustomerView", "..\Module3CustomerView\Module3CustomerView.vdproj", "{38F60710-01F0-484F-89B0-A725180372C5}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "One Sixth Scale Collectables", "..\One Sixth Scale Collectables\One Sixth Scale Collectables.vdproj", "{3C8DC479-098D-D755-4272-AA291A44EB25}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Module2SQLite", "..\Module2SQLite\Module2SQLite.vdproj", "{6E53B3C0-EF14-503C-727A-0D89898A2EAB}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Module3NewFeature", "..\Module3NewFeature\Module3NewFeature.vdproj", "{C784F055-2FB4-8535-C6F6-0F8C03A12BFC}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "M4ThreadingAndOptimization", "..\M4ThreadingAndOptimization\M4ThreadingAndOptimization.vdproj", "{AA0A150B-1F63-8C51-2578-EE28AFF4AEDF}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "M5XMLComments", "..\M5XMLComments\M5XMLComments.vdproj", "{A0F743CF-7EE3-B416-F4CF-AF291477CA4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60681FF4-86F3-414E-B884-2321C5EAE2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60681FF4-86F3-414E-B884-2321C5EAE2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60681FF4-86F3-414E-B884-2321C5EAE2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60681FF4-86F3-414E-B884-2321C5EAE2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BBCA60F-6B67-4926-AA9C-7A652DC8027F}.Debug|Any CPU.ActiveCfg = Debug
+		{7BBCA60F-6B67-4926-AA9C-7A652DC8027F}.Release|Any CPU.ActiveCfg = Release
+		{38F60710-01F0-484F-89B0-A725180372C5}.Debug|Any CPU.ActiveCfg = Debug
+		{38F60710-01F0-484F-89B0-A725180372C5}.Release|Any CPU.ActiveCfg = Release
+		{3C8DC479-098D-D755-4272-AA291A44EB25}.Debug|Any CPU.ActiveCfg = Debug
+		{3C8DC479-098D-D755-4272-AA291A44EB25}.Release|Any CPU.ActiveCfg = Release
+		{6E53B3C0-EF14-503C-727A-0D89898A2EAB}.Debug|Any CPU.ActiveCfg = Debug
+		{6E53B3C0-EF14-503C-727A-0D89898A2EAB}.Release|Any CPU.ActiveCfg = Release
+		{C784F055-2FB4-8535-C6F6-0F8C03A12BFC}.Debug|Any CPU.ActiveCfg = Debug
+		{C784F055-2FB4-8535-C6F6-0F8C03A12BFC}.Release|Any CPU.ActiveCfg = Release
+		{AA0A150B-1F63-8C51-2578-EE28AFF4AEDF}.Debug|Any CPU.ActiveCfg = Debug
+		{AA0A150B-1F63-8C51-2578-EE28AFF4AEDF}.Release|Any CPU.ActiveCfg = Release
+		{A0F743CF-7EE3-B416-F4CF-AF291477CA4B}.Debug|Any CPU.ActiveCfg = Debug
+		{A0F743CF-7EE3-B416-F4CF-AF291477CA4B}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88BE58F1-DF01-4279-B6E2-819CE6AF42E9}
+	EndGlobalSection
+EndGlobal

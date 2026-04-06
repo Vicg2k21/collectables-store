@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{60681FF4-86F3-414E-B884-2321C5EAE2DC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Module2LogonView</RootNamespace>
+    <AssemblyName>Module2LogonView</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.2.1.66\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.1\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="clsCart.cs" />
+    <Compile Include="clsHTML.cs" />
+    <Compile Include="clsImageUploader.cs" />
+    <Compile Include="clsLogon.cs" />
+    <Compile Include="clsSQL.cs" />
+    <Compile Include="clsValidation.cs" />
+    <Compile Include="frmAddEditCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditCustomers.Designer.cs">
+      <DependentUpon>frmAddEditCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddEditDiscounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditDiscounts.Designer.cs">
+      <DependentUpon>frmAddEditDiscounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddEditEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditEmployee.Designer.cs">
+      <DependentUpon>frmAddEditEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddEditInventoryItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditInventoryItem.Designer.cs">
+      <DependentUpon>frmAddEditInventoryItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddEditManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditManager.Designer.cs">
+      <DependentUpon>frmAddEditManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCart.Designer.cs">
+      <DependentUpon>frmCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCheckout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCheckout.Designer.cs">
+      <DependentUpon>frmCheckout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCreateAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreateAccount.Designer.cs">
+      <DependentUpon>frmCreateAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomerOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomerOrders.Designer.cs">
+      <DependentUpon>frmCustomerOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHelp.Designer.cs">
+      <DependentUpon>frmHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFigureCatalog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFigureCatalog.Designer.cs">
+      <DependentUpon>frmFigureCatalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFigureDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFigureDetails.Designer.cs">
+      <DependentUpon>frmFigureDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageAccounts.Designer.cs">
+      <DependentUpon>frmManageAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageCustomers.Designer.cs">
+      <DependentUpon>frmManageCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageEmployees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageEmployees.Designer.cs">
+      <DependentUpon>frmManageEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageManagers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageManagers.Designer.cs">
+      <DependentUpon>frmManageManagers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManager.Designer.cs">
+      <DependentUpon>frmManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManagerDiscounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManagerDiscounts.Designer.cs">
+      <DependentUpon>frmManagerDiscounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManagerInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManagerInventory.Designer.cs">
+      <DependentUpon>frmManagerInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManagerPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManagerPOS.Designer.cs">
+      <DependentUpon>frmManagerPOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManagerReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManagerReports.Designer.cs">
+      <DependentUpon>frmManagerReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmResetPassword.Designer.cs">
+      <DependentUpon>frmResetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRestockItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRestockItem.Designer.cs">
+      <DependentUpon>frmRestockItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddEditCustomers.resx">
+      <DependentUpon>frmAddEditCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditDiscounts.resx">
+      <DependentUpon>frmAddEditDiscounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditEmployee.resx">
+      <DependentUpon>frmAddEditEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditInventoryItem.resx">
+      <DependentUpon>frmAddEditInventoryItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditManager.resx">
+      <DependentUpon>frmAddEditManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCart.resx">
+      <DependentUpon>frmCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCheckout.resx">
+      <DependentUpon>frmCheckout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCreateAccount.resx">
+      <DependentUpon>frmCreateAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomerOrders.resx">
+      <DependentUpon>frmCustomerOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHelp.resx">
+      <DependentUpon>frmHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFigureCatalog.resx">
+      <DependentUpon>frmFigureCatalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFigureDetails.resx">
+      <DependentUpon>frmFigureDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageAccounts.resx">
+      <DependentUpon>frmManageAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageCustomers.resx">
+      <DependentUpon>frmManageCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageEmployees.resx">
+      <DependentUpon>frmManageEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageManagers.resx">
+      <DependentUpon>frmManageManagers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManager.resx">
+      <DependentUpon>frmManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManagerDiscounts.resx">
+      <DependentUpon>frmManagerDiscounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManagerInventory.resx">
+      <DependentUpon>frmManagerInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManagerPOS.resx">
+      <DependentUpon>frmManagerPOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManagerReports.resx">
+      <DependentUpon>frmManagerReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmResetPassword.resx">
+      <DependentUpon>frmResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRestockItem.resx">
+      <DependentUpon>frmRestockItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Content Include="CollectablesDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+</Project>
